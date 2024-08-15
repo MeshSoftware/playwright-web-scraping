@@ -28,7 +28,7 @@ const scrapeFollowers = async () => {
 	const followersLink = page.getByText(/[0-9,.KM]+ followers/i);
 
 	const followersCount = await followersLink
-		.evaluate(node => Number(node.textContent?.replace(' followers', '')));
+		.evaluate(node => Number(node.textContent?.replace(/[^0-9]/g, '')));
 
 	console.log(clc.blue(`Followers Count: ${followersCount}`));
 
